@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dreams Academy — Говори легко и свободно</title>
+
+    <style>
+        :root {
+            --bg-main: #f0e8f8;
+            --color-primary: #4a1a6a;
+            --color-primary-light: #6d3a8a;
+            --color-primary-dark: #3a1055;
+            --color-accent: #4a1a6a;
+            --color-soft: #d4c0e0;
+            --color-light: #e8dcf0;
+            --color-glow: rgba(74, 26, 106, 0.08);
+            --text-main: #1a0a2e;
+            --text-muted: #6a5a7a;
+            --glass-bg: rgba(255, 252, 255, 0.85);
+            --glass-border: rgba(74, 26, 106, 0.12);
+            --gold: #f59e0b;
+            --shadow-sm: 0 4px 20px rgba(74, 26, 106, 0.06);
+            --shadow-md: 0 10px 40px rgba(74, 26, 106, 0.10);
+            --shadow-lg: 0 20px 60px rgba(74, 26, 106, 0.14);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-primary);
+            border-radius: 10px;
+            border: 2px solid var(--bg-main);
+            transition: background 0.3s ease;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-primary-light);
+        }
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--color-primary) var(--bg-main);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .ambient-glow-1 {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(74, 26, 106, 0.12) 0%, rgba(255,255,255,0) 70%);
+            top: -150px;
+            right: -100px;
+            z-index: -1;
+            filter: blur(50px);
+        }
+        .ambient-glow-2 {
+            position: absolute;
+            width: 900px;
+            height: 900px;
+            background: radial-gradient(circle, rgba(100, 60, 130, 0.08) 0%, rgba(255,255,255,0) 70%);
+            top: 600px;
+            left: -200px;
+            z-index: -1;
+            filter: blur(60px);
+        }
+
+        header {
+            padding: 25px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 252, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+        header.scrolled {
+            padding: 15px 10%;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            margin-left: 40px;
+            letter-spacing: 0.3px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -6px;
+            left: 0;
+            background-color: var(--color-primary);
+            transition: width 0.3s ease;
+        }
+        nav a:hover::after { width: 100%; }
+        nav a:hover { color: var(--color-primary); }
+        nav a.active {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+        nav a.active::after {
+            width: 100%;
+        }
+
+        section {
+            padding: 80px 10%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 50px;
+        }
+        .header-text { text-align: left; }
+
+        .section-title {
+            font-size: 44px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 17px;
+        }
+
+        .fade-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-luxury {
+            background: var(--color-primary);
+            color: #fff;
+            padding: 20px 45px;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(74, 26, 106, 0.20);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-luxury:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(74, 26, 106, 0.30);
+            background: var(--color-primary-light);
+        }
+        .btn-luxury:active {
+            transform: scale(0.96);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--color-primary);
+            padding: 20px 45px;
+            border: 2px solid var(--color-primary);
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: #fff;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(74, 26, 106, 0.20);
+        }
+
+        /* ===== ГЕРО-БЛОК ===== */
+        .hero-new {
+            padding: 60px 10% 80px;
+            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards;
+        }
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-new h1 {
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.08;
+            letter-spacing: -2px;
+            color: var(--color-primary);
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .hero-actions .btn-luxury,
+        .hero-actions .btn-outline {
+            min-width: 280px;
+        }
+
+        /* ===== СТАТИСТИКА ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            margin-bottom: 80px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: 40px 30px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-sm);
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--color-primary);
+            letter-spacing: -1px;
+            font-feature-settings: "tnum";
+            margin-bottom: 4px;
+        }
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* ===== ПРОГРАММЫ ===== */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 40px 35px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .program-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(74, 26, 106, 0.25);
+            box-shadow: var(--shadow-lg);
+            background: rgba(255, 252, 255, 0.95);
+        }
+        .program-card h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        .program-card .program-desc {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.7;
+            flex: 1;
+        }
+        .program-card .program-tag {
+            display: inline-block;
+            margin-top: 20px;
+            background: rgba(74, 26, 106, 0.08);
+            padding: 8px 24px;
+            border-radius: 100px;
+            font-size: 14px;
+            color: var(--color-primary);
+            font-weight: 600;
+            align-self: center;
+        }
+
+        /* ===== ПРЕИМУЩЕСТВА ===== */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        .advantage-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .advantage-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(74, 26, 106, 0.25);
+        }
+        .advantage-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 12px;
+        }
+        .advantage-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* ===== ПРЕПОДАВАТЕЛИ (БОЛЬШИЕ КАРТОЧКИ) ===== */
+        .teachers-carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        .teachers-track {
+            display: flex;
+            gap: 30px;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .teacher-card {
+            flex: 0 0 calc(50% - 15px);
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 45px 35px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .teacher-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(74, 26, 106, 0.25);
+        }
+        .teacher-avatar-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 16px;
+            display: block;
+            border: 3px solid var(--color-primary);
+        }
+        .teacher-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 4px;
+        }
+        .teacher-card .teacher-edu {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+        .teacher-card .teacher-spec {
+            display: inline-block;
+            background: rgba(74, 26, 106, 0.08);
+            padding: 6px 20px;
+            border-radius: 100px;
+            font-size: 15px;
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .teacher-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .btn-arrow {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #fff;
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-arrow:hover {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            transform: scale(1.05);
+        }
+        .btn-arrow:active {
+            transform: scale(0.95);
+        }
+        .btn-arrow svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--color-primary);
+            transition: fill 0.25s;
+        }
+        .btn-arrow:hover svg { fill: #fff; }
+
+        /* ===== ЦЕНЫ ===== */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+        .pricing-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 40px 35px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(74, 26, 106, 0.25);
+        }
+        .pricing-card h3 {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+        .pricing-card .pricing-sub {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+        .pricing-card .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(74, 26, 106, 0.06);
+        }
+        .pricing-card .price-row:last-child {
+            border: none;
+        }
+        .pricing-card .price-label {
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .pricing-card .price-value {
+            font-weight: 700;
+            color: var(--color-primary);
+            font-size: 16px;
+            text-align: right;
+        }
+        .pricing-card .price-duration {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 400;
+            display: block;
+        }
+        .pricing-card .pricing-btn-wrap {
+            margin-top: auto;
+            padding-top: 25px;
+        }
+        .pricing-card .btn-luxury {
+            width: 100%;
+        }
+
+        /* ===== КОНСУЛЬТАЦИЯ ===== */
+        .consult-section {
+            background: linear-gradient(180deg, transparent, rgba(74, 26, 106, 0.06));
+        }
+        .consult-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 60px;
+            border-radius: 32px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+        .consult-box .section-title {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .consult-box .consult-desc {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* ===== СОСТОЯНИЕ ЗАГРУЗКИ ===== */
+        .consult-loading {
+            display: none;
+            margin-top: 20px;
+            padding: 30px;
+            background: rgba(74, 26, 106, 0.06);
+            border-radius: 16px;
+            border: 1px solid rgba(74, 26, 106, 0.08);
+        }
+        .consult-loading.show {
+            display: block;
+        }
+        .consult-loading .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid rgba(74, 26, 106, 0.1);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .consult-loading p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        /* ===== ОТЗЫВЫ ===== */
+        .reviews-carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        .reviews-track {
+            display: flex;
+            gap: 30px;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .review-card {
+            flex: 0 0 calc(50% - 15px);
+            background: #fff;
+            border-radius: 24px;
+            padding: 35px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+        .review-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .review-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .review-user {
+            flex: 1;
+        }
+        .review-name {
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--color-primary);
+        }
+        .review-stars {
+            color: var(--gold);
+            font-size: 16px;
+            letter-spacing: 2px;
+        }
+        .review-date {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+        .review-text {
+            color: var(--text-main);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        .review-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--glass-border);
+            padding-top: 14px;
+        }
+        .review-badge {
+            background: rgba(74, 26, 106, 0.06);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--color-primary);
+        }
+        .review-answer {
+            background: rgba(74, 26, 106, 0.04);
+            padding: 14px 18px;
+            border-radius: 12px;
+            margin-top: 12px;
+            font-size: 14px;
+            color: var(--text-muted);
+            border-left: 3px solid var(--color-primary);
+        }
+        .review-answer strong {
+            color: var(--color-primary);
+        }
+        .carousel-controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* ===== КОНТАКТЫ ===== */
+        .contacts-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+        }
+        .contacts-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .contact-item {
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+        .contact-item:hover {
+            transform: translateX(5px);
+        }
+        .contact-item:last-child { margin-bottom: 0; }
+        .contact-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-primary);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .contact-value {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--color-primary);
+            line-height: 1.5;
+        }
+
+        .phone-wrapper {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .phone-wrapper .phone-number {
+            font-weight: 600;
+            color: var(--color-primary);
+            transition: color 0.3s ease;
+            user-select: none;
+        }
+        .phone-wrapper:hover .phone-number {
+            color: var(--color-primary-light);
+        }
+        .phone-tooltip {
+            position: absolute;
+            bottom: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: var(--color-primary);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(74, 26, 106, 0.20);
+            pointer-events: none;
+        }
+        .phone-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--color-primary);
+        }
+        .phone-wrapper:hover .phone-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        .copy-notification {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--color-primary);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 50px rgba(74, 26, 106, 0.25);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .copy-notification.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+            border-top: 1px solid var(--glass-border);
+            background: #fff;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(74, 26, 106, 0.25);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            z-index: 999;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .scroll-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(74, 26, 106, 0.30);
+            background: var(--color-primary-light);
+        }
+        .scroll-top:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 1024px) {
+            .contacts-wrapper { grid-template-columns: 1fr; }
+            .map-container { height: 350px; }
+            .advantages-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 30px 20px; }
+            .review-card { flex: 0 0 calc(100% - 15px); }
+            .teacher-card { flex: 0 0 calc(50% - 15px); }
+            .programs-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .teacher-card { flex: 0 0 calc(100% - 15px); }
+        }
+
+        @media (max-width: 968px) {
+            .hero-new h1 { font-size: 42px; letter-spacing: -1px; }
+            .section-title { font-size: 32px; }
+            .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+            .advantages-grid { grid-template-columns: 1fr; }
+            nav a { margin-left: 20px; font-size: 13px; }
+            section { padding: 60px 5%; }
+            .programs-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .hero-actions { flex-direction: column; align-items: center; }
+            .hero-actions .btn-luxury,
+            .hero-actions .btn-outline { min-width: 100%; max-width: 400px; }
+            .consult-box { padding: 40px 25px; }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 15px 5%;
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav a { margin: 0 12px; font-size: 12px; }
+            .hero-new { padding: 20px 5% 60px; }
+            .hero-new h1 { font-size: 28px; }
+            section { padding: 40px 5%; }
+            .contacts-wrapper { padding: 20px; }
+            .consult-box { padding: 30px 20px; }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                padding: 20px 15px;
+                gap: 15px;
+            }
+            .stat-number { font-size: 20px; }
+            .stat-label { font-size: 11px; }
+            .scroll-top {
+                bottom: 15px;
+                right: 15px;
+                width: 48px;
+                height: 48px;
+                font-size: 18px;
+            }
+            .copy-notification {
+                bottom: 80px;
+                font-size: 13px;
+                padding: 12px 20px;
+                width: 90%;
+                justify-content: center;
+            }
+            .phone-tooltip { font-size: 11px; padding: 6px 12px; }
+            .programs-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .teacher-card { flex: 0 0 calc(100% - 15px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- ===== ШАПКА ===== -->
+    <header id="mainHeader">
+        <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Dreams</div>
+        <nav id="mainNav">
+            <a href="#programs">Направления</a>
+            <a href="#teachers">Преподаватели</a>
+            <a href="#pricing">Цены</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="#consult">Консультация</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ===== ГЕРО-БЛОК ===== -->
+        <section class="hero-new">
+            <h1>Говори легко и свободно</h1>
+            <div class="hero-actions">
+                <button class="btn-outline" onclick="document.getElementById('consult').scrollIntoView({behavior: 'smooth'})">Первое занятие бесплатно</button>
+                <button class="btn-luxury" onclick="document.getElementById('consult').scrollIntoView({behavior: 'smooth'})">Записаться на пробное занятие</button>
+            </div>
+        </section>
+
+        <!-- ===== СТАТИСТИКА ===== -->
+        <section class="fade-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">10 лет</div>
+                    <div class="stat-label">на рынке</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Обучение</div>
+                    <div class="stat-label">в группе<br>или индивидуально</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Формат</div>
+                    <div class="stat-label">очно<br>или онлайн</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Клуб</div>
+                    <div class="stat-label">разговорный<br>клуб</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Носители</div>
+                    <div class="stat-label">носители<br>языка</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== АКАДЕМИЧЕСКИЕ ПРОГРАММЫ ===== -->
+        <section id="programs" class="fade-section">
+            <div class="section-header">
+                <div class="header-text">
+                    <h2 class="section-title">Академические программы</h2>
+                    <p class="section-subtitle">Ориентир на фундаментальные знания и свободную коммуникацию</p>
+                </div>
+            </div>
+
+            <div class="programs-grid">
+                <div class="program-card">
+                    <h3>Английский язык</h3>
+                    <div class="program-desc">Изучение языка с нуля до продвинутого уровня. Подготовка к ОГЭ, ЕГЭ, международным экзаменам. Разговорный клуб и погружение в языковую среду.</div>
+                    <span class="program-tag">Очно и онлайн</span>
+                </div>
+
+                <div class="program-card">
+                    <h3>Китайский язык</h3>
+                    <div class="program-desc">Погружение в культуру и язык Поднебесной. Изучение иероглифики, тонов, разговорной речи. Подготовка к международным экзаменам HSK.</div>
+                    <span class="program-tag">Очно и онлайн</span>
+                </div>
+
+                <div class="program-card">
+                    <h3>Ментальная арифметика и математика</h3>
+                    <div class="program-desc">Развитие скорости счета, логического мышления и концентрации. Подготовка к олимпиадам и углубленное изучение математики.</div>
+                    <span class="program-tag">Групповые и индивидуальные</span>
+                </div>
+
+                <div class="program-card">
+                    <h3>Логопедия</h3>
+                    <div class="program-desc">Постановка звуков, развитие речи, коррекция дикции. Индивидуальные занятия с опытным логопедом для детей любого возраста.</div>
+                    <span class="program-tag">Индивидуальные занятия</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ПРЕИМУЩЕСТВА ===== -->
+        <section class="fade-section">
+            <div class="section-header">
+                <div class="header-text">
+                    <h2 class="section-title">Наши преимущества</h2>
+                    <p class="section-subtitle">Создаем идеальные условия для развития вашего ребенка</p>
+                </div>
+            </div>
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <h3>Опытные и мотивированные преподаватели</h3>
+                    <p>Опытные и мотивированные преподаватели, которые сделают обучение интересным и эффективным, учитывая индивидуальные особенности каждого студента.</p>
+                </div>
+                <div class="advantage-card">
+                    <h3>Компактные группы и индивидуальные занятия</h3>
+                    <p>Выбирайте комфортный формат обучения: небольшие группы для живого общения или занятия с преподавателем один на один для максимальной эффективности.</p>
+                </div>
+                <div class="advantage-card">
+                    <h3>Современные методики обучения</h3>
+                    <p>Используем передовые технологии и проверенные подходы, чтобы обучение было интересным, продуктивным и быстро давало результаты.</p>
+                </div>
+                <div class="advantage-card">
+                    <h3>Гибкий график занятий</h3>
+                    <p>Подбираем удобное время обучения, чтобы оно идеально вписалось в ваш распорядок дня, будь то утром, днем или вечером.</p>
+                </div>
+                <div class="advantage-card">
+                    <h3>Курсы для разных уровней</h3>
+                    <p>Независимо от вашего начального уровня — для начинающих или продвинутых — мы подготовим подходящую программу обучения.</p>
+                </div>
+                <div class="advantage-card">
+                    <h3>Комфортная атмосфера</h3>
+                    <p>Уютные классы и дружелюбная обстановка создают идеальные условия для успеха и приятного процесса обучения.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ПРЕПОДАВАТЕЛИ (БОЛЬШИЕ КАРТОЧКИ) ===== -->
+        <section id="teachers" class="fade-section">
+            <div class="section-header">
+                <div class="header-text">
+                    <h2 class="section-title">Наши преподаватели</h2>
+                    <p class="section-subtitle">Профессионалы, влюбленные в свое дело</p>
+                </div>
+                <div class="teacher-controls">
+                    <button class="btn-arrow" id="teachersPrev" aria-label="Назад">
+                        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+                    </button>
+                    <button class="btn-arrow" id="teachersNext" aria-label="Вперед">
+                        <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="teachers-carousel">
+                <div class="teachers-track" id="teachersTrack">
+                    <div class="teacher-card">
+                        <img src="teachers/teacher-1.jpg" alt="Алексей М." class="teacher-avatar-img">
+                        <h3>Алексей М.</h3>
+                        <div class="teacher-edu">НГПУ, филологический факультет</div>
+                        <span class="teacher-spec">Английский язык</span>
+                    </div>
+                    <div class="teacher-card">
+                        <img src="teachers/teacher-2.jpg" alt="Елизавета С." class="teacher-avatar-img">
+                        <h3>Елизавета С.</h3>
+                        <div class="teacher-edu">НГУ, факультет иностранных языков</div>
+                        <span class="teacher-spec">Английский язык</span>
+                    </div>
+                    <div class="teacher-card">
+                        <img src="teachers/teacher-3.jpg" alt="Анна К." class="teacher-avatar-img">
+                        <h3>Анна К.</h3>
+                        <div class="teacher-edu">НГПУ, Институт филологии</div>
+                        <span class="teacher-spec">Китайский язык</span>
+                    </div>
+                    <div class="teacher-card">
+                        <img src="teachers/teacher-4.jpg" alt="Мария В." class="teacher-avatar-img">
+                        <h3>Мария В.</h3>
+                        <div class="teacher-edu">НГТУ, факультет прикладной математики</div>
+                        <span class="teacher-spec">Ментальная арифметика</span>
+                    </div>
+                    <div class="teacher-card">
+                        <img src="teachers/teacher-5.jpg" alt="Ольга Н." class="teacher-avatar-img">
+                        <h3>Ольга Н.</h3>
+                        <div class="teacher-edu">НГПУ, Институт детства</div>
+                        <span class="teacher-spec">Логопедия</span>
+                    </div>
+                    <div class="teacher-card">
+                        <img src="teachers/teacher-6.jpg" alt="Екатерина Р." class="teacher-avatar-img">
+                        <h3>Екатерина Р.</h3>
+                        <div class="teacher-edu">НГУ, факультет иностранных языков</div>
+                        <span class="teacher-spec">Китайский язык</span>
+                    </div>
+                    <div class="teacher-card">
+                        <img src="teachers/teacher-7.jpg" alt="Дмитрий П." class="teacher-avatar-img">
+                        <h3>Дмитрий П.</h3>
+                        <div class="teacher-edu">НГПУ, Институт филологии</div>
+                        <span class="teacher-spec">Английский язык</span>
+                    </div>
+                    <div class="teacher-card">
+                        <img src="teachers/teacher-8.jpg" alt="Светлана Т." class="teacher-avatar-img">
+                        <h3>Светлана Т.</h3>
+                        <div class="teacher-edu">НГПУ, Институт детства</div>
+                        <span class="teacher-spec">Логопедия</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ЦЕНЫ ===== -->
+        <section id="pricing" class="fade-section">
+            <div class="section-header">
+                <div class="header-text">
+                    <h2 class="section-title">Стоимость обучения</h2>
+                    <p class="section-subtitle">Выберите подходящий формат и программу</p>
+                </div>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Английский язык</h3>
+                    <div class="pricing-sub">Очно и онлайн</div>
+                    <div class="price-row">
+                        <span class="price-label">Дошкольники (группа)</span>
+                        <span class="price-value">5 700 ₽ <span class="price-duration">2р/нед · 45мин</span></span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">Начальная школа 7-10 лет</span>
+                        <span class="price-value">6 300 ₽ <span class="price-duration">2р/нед · 60мин</span></span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">Средняя школа 11-15 лет</span>
+                        <span class="price-value">7 300 ₽ <span class="price-duration">2р/нед · 80мин</span></span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">Индивидуально (45 мин)</span>
+                        <span class="price-value">1 400 ₽</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">Индивидуально (60 мин)</span>
+                        <span class="price-value">1 800 ₽</span>
+                    </div>
+                    <div class="price-row" style="border-bottom: none; padding-bottom: 0;">
+                        <span class="price-label">Взрослые / ОГЭ/ЕГЭ/ВПР</span>
+                        <span class="price-value">по запросу</span>
+                    </div>
+                    <div class="pricing-btn-wrap">
+                        <button class="btn-luxury" onclick="document.getElementById('consult').scrollIntoView({behavior: 'smooth'})">Записаться</button>
+                    </div>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Китайский язык</h3>
+                    <div class="pricing-sub">Очно и онлайн</div>
+                    <div class="price-row">
+                        <span class="price-label">Индивидуально (40 мин)</span>
+                        <span class="price-value">1 400 ₽</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">Индивидуально (60 мин)</span>
+                        <span class="price-value">1 800 ₽</span>
+                    </div>
+                    <div class="price-row" style="border-bottom: none;">
+                        <span class="price-label">Групповое занятие</span>
+                        <span class="price-value">6 300 ₽ <span class="price-duration">2р/нед · 60мин</span></span>
+                    </div>
+                    <div class="pricing-btn-wrap">
+                        <button class="btn-luxury" onclick="document.getElementById('consult').scrollIntoView({behavior: 'smooth'})">Записаться</button>
+                    </div>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Ментальная арифметика и математика</h3>
+                    <div class="pricing-sub">Групповые и индивидуальные занятия</div>
+                    <div class="price-row">
+                        <span class="price-label">Индивидуальное занятие</span>
+                        <span class="price-value">1 200 ₽ <span class="price-duration">60 мин</span></span>
+                    </div>
+                    <div class="price-row" style="border-bottom: none;">
+                        <span class="price-label">Групповое занятие</span>
+                        <span class="price-value">6 300 ₽ <span class="price-duration">2р/нед · 60мин</span></span>
+                    </div>
+                    <div class="pricing-btn-wrap">
+                        <button class="btn-luxury" onclick="document.getElementById('consult').scrollIntoView({behavior: 'smooth'})">Записаться</button>
+                    </div>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Логопедия</h3>
+                    <div class="pricing-sub">Индивидуальные занятия</div>
+                    <div class="price-row" style="border-bottom: none;">
+                        <span class="price-label">Логопед</span>
+                        <span class="price-value">1 000 ₽ <span class="price-duration">45 мин</span></span>
+                    </div>
+                    <div class="pricing-btn-wrap">
+                        <button class="btn-luxury" onclick="document.getElementById('consult').scrollIntoView({behavior: 'smooth'})">Записаться</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ОТЗЫВЫ ===== -->
+        <section id="reviews" class="fade-section">
+            <div class="section-header">
+                <div class="header-text">
+                    <h2 class="section-title">Отзывы родителей</h2>
+                    <p class="section-subtitle">Реальные истории успеха наших учеников</p>
+                </div>
+                <div class="carousel-controls">
+                    <button class="btn-arrow" id="reviewsPrev" aria-label="Назад">
+                        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+                    </button>
+                    <button class="btn-arrow" id="reviewsNext" aria-label="Вперед">
+                        <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="reviews-carousel">
+                <div class="reviews-track" id="reviewsTrack">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">АМ</div>
+                            <div class="review-user">
+                                <div class="review-name">Арина М.</div>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                            <div class="review-date">11 февраля 2026</div>
+                        </div>
+                        <div class="review-text">Учу в данной школе китайский язык — идёт отлично! Прогресс чувствуется, всё объясняют понятно. Очень рекомендую.</div>
+                        <div class="review-footer">
+                            <span>1 посещение</span>
+                            <span class="review-badge">✅ Отзыв подтверждён</span>
+                        </div>
+                        <div class="review-answer">
+                            <strong>Dreams, школа мечты</strong> — Благодарим за высокую оценку нашей работы.
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">АП</div>
+                            <div class="review-user">
+                                <div class="review-name">Анастасия П.</div>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                            <div class="review-date">5 февраля 2026</div>
+                        </div>
+                        <div class="review-text">Отличная школа, очень приятные преподаватели, всегда помогут, объяснят тему!</div>
+                        <div class="review-footer">
+                            <span>3 отзыва</span>
+                            <span class="review-badge">✅ Отзыв подтверждён</span>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">МШ</div>
+                            <div class="review-user">
+                                <div class="review-name">Милана Ш.</div>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                            <div class="review-date">18 декабря 2024</div>
+                        </div>
+                        <div class="review-text">Начали посещать школу Английского с 5 лет, и очень рады, что встреча с языком у ребенка прошла именно здесь! Сын с удовольствием посещает занятия, которые проходят в уютной, дружной атмосфере!</div>
+                        <div class="review-footer">
+                            <span>2 посещения</span>
+                            <span class="review-badge">✅ Отзыв подтверждён</span>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">МБ</div>
+                            <div class="review-user">
+                                <div class="review-name">Мария Б.</div>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                            <div class="review-date">17 декабря 2024</div>
+                        </div>
+                        <div class="review-text">Отличная школа! Начали ходить на уроки английского языка с 5 лет, преподаватель сразу нашла подход к ребенку и заинтересовала занятиями. Дочь ходит с большим удовольствием уже второй год.</div>
+                        <div class="review-footer">
+                            <span>4 отзыва</span>
+                            <span class="review-badge">✅ Отзыв подтверждён</span>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">ЕП</div>
+                            <div class="review-user">
+                                <div class="review-name">Елена П.</div>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                            <div class="review-date">11 декабря 2024</div>
+                        </div>
+                        <div class="review-text">Очень рекомендую данную школу. Дочь начала изучать английский в классической школе и возненавидела этот предмет. Спустя два месяца она с удовольствием бежит на занятия!</div>
+                        <div class="review-footer">
+                            <span>2 отзыва</span>
+                            <span class="review-badge">✅ Отзыв подтверждён</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== КОНСУЛЬТАЦИЯ (БЕЗ ПОЛЕЙ ВВОДА, С АНИМАЦИЕЙ) ===== -->
+        <section id="consult" class="consult-section fade-section">
+            <div class="consult-box">
+                <h2 class="section-title">Получить консультацию</h2>
+                <p class="consult-desc">Перейдите в форму, заполните ФИО и телефон, и мы свяжемся с вами в ближайшее время.</p>
+
+                <button class="btn-luxury" id="consultBtn" onclick="openForm()">Получить консультацию</button>
+
+                <!-- СОСТОЯНИЕ ЗАГРУЗКИ -->
+                <div class="consult-loading" id="consultLoading">
+                    <div class="spinner"></div>
+                    <p>⏳ Открываем форму...</p>
+                </div>
+
+                <div style="margin-top: 20px; font-size: 14px; color: var(--text-muted);">
+                    Это займет не больше 2 минут
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== КОНТАКТЫ ===== -->
+        <section id="contacts" class="fade-section">
+            <h2 class="section-title">Контакты и локация</h2>
+            <div class="contacts-wrapper">
+                <div class="contacts-info">
+                    <div class="contact-item">
+                        <div class="contact-label">Адрес</div>
+                        <div class="contact-value">г. Новосибирск, ул. Красина, 54<br>Офис 504, 5 этаж</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">График</div>
+                        <div class="contact-value">Пн — Вс: 09:00–20:00</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">Телефоны</div>
+                        <div class="contact-value">
+                            <div class="phone-wrapper" onclick="copyPhone('+79139851143')">
+                                <span class="phone-number">+7 (913) 985-11-43</span>
+                                <span class="phone-tooltip">👆 Нажмите, чтобы скопировать</span>
+                            </div>
+                            <br>
+                            <div class="phone-wrapper" onclick="copyPhone('+79137190515')">
+                                <span class="phone-number">+7 (913) 719-05-15</span>
+                                <span class="phone-tooltip">👆 Нажмите, чтобы скопировать</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="map" class="map-container"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>&copy; 2026 Dreams Academy</footer>
+
+    <button class="scroll-top" id="scrollTopBtn" aria-label="Наверх">↑</button>
+
+    <div class="copy-notification" id="copyNotification">
+        <span class="checkmark">✅</span>
+        <span>Номер скопирован в буфер обмена</span>
+    </div>
+
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+    <script>
+        // ============================================================
+        // 1. ЯНДЕКС КАРТЫ
+        // ============================================================
+        ymaps.ready(function(){
+            const coords = [55.042323, 82.962657];
+            const myMap = new ymaps.Map("map", {
+                center: coords,
+                zoom: 17,
+                controls: ['zoomControl']
+            });
+            const mark = new ymaps.Placemark(coords, {
+                balloonContent: 'Dreams Academy, ул. Красина, 54'
+            }, {
+                preset: 'islands#violetDotIcon',
+                iconColor: '#4a1a6a'
+            });
+            myMap.geoObjects.add(mark);
+        });
+
+        // ============================================================
+        // 2. FADE-АНИМАЦИЯ
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.fade-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            sections.forEach(section => observer.observe(section));
+        });
+
+        // ============================================================
+        // 3. ОТКРЫТИЕ ФОРМЫ С АНИМАЦИЕЙ
+        // ============================================================
+        function openForm() {
+            const btn = document.getElementById('consultBtn');
+            const loadingDiv = document.getElementById('consultLoading');
+
+            btn.style.display = 'none';
+            loadingDiv.classList.add('show');
+
+            window.open('https://docs.google.com/forms/d/e/1FAIpQLSelVhwcDIxm8r4igsK7LitWq0Uki8nEQZZLednb0ZTgMHVcoA/viewform', '_blank');
+
+            setTimeout(() => {
+                loadingDiv.classList.remove('show');
+                btn.style.display = 'inline-block';
+            }, 1500);
+        }
+
+        // ============================================================
+        // 4. КАРУСЕЛЬ ПРЕПОДАВАТЕЛЕЙ
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.getElementById('teachersTrack');
+            const prevBtn = document.getElementById('teachersPrev');
+            const nextBtn = document.getElementById('teachersNext');
+            const cards = track.querySelectorAll('.teacher-card');
+
+            if (cards.length === 0) return;
+
+            let currentIndex = 0;
+            const totalCards = cards.length;
+            let cardsPerView = window.innerWidth < 1024 ? 2 : 2;
+
+            function updateTeachers(animate = true) {
+                if (!animate) {
+                    track.style.transition = 'none';
+                } else {
+                    track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+                }
+                const gap = 30;
+                const cardWidth = cards[0].offsetWidth + gap;
+                const offset = currentIndex * cardWidth * cardsPerView;
+                track.style.transform = `translateX(-${offset}px)`;
+            }
+
+            function getCardsPerView() {
+                if (window.innerWidth < 768) return 1;
+                return 2;
+            }
+
+            nextBtn.addEventListener('click', () => {
+                cardsPerView = getCardsPerView();
+                const maxIndex = Math.ceil(totalCards / cardsPerView) - 1;
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    updateTeachers(true);
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateTeachers(true);
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                cardsPerView = getCardsPerView();
+                if (currentIndex > Math.ceil(totalCards / cardsPerView) - 1) {
+                    currentIndex = Math.ceil(totalCards / cardsPerView) - 1;
+                }
+                updateTeachers(false);
+            });
+
+            setTimeout(() => updateTeachers(false), 100);
+        });
+
+        // ============================================================
+        // 5. КАРУСЕЛЬ ОТЗЫВОВ
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.getElementById('reviewsTrack');
+            const prevBtn = document.getElementById('reviewsPrev');
+            const nextBtn = document.getElementById('reviewsNext');
+            const cards = track.querySelectorAll('.review-card');
+
+            if (cards.length === 0) return;
+
+            let currentIndex = 0;
+            const totalCards = cards.length;
+            let cardsPerView = window.innerWidth < 1024 ? 1 : 2;
+
+            function updateReviews(animate = true) {
+                if (!animate) {
+                    track.style.transition = 'none';
+                } else {
+                    track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+                }
+                const gap = 30;
+                const cardWidth = cards[0].offsetWidth + gap;
+                const offset = currentIndex * cardWidth * cardsPerView;
+                track.style.transform = `translateX(-${offset}px)`;
+            }
+
+            function getCardsPerView() {
+                return window.innerWidth < 1024 ? 1 : 2;
+            }
+
+            nextBtn.addEventListener('click', () => {
+                cardsPerView = getCardsPerView();
+                const maxIndex = Math.ceil(totalCards / cardsPerView) - 1;
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    updateReviews(true);
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateReviews(true);
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                cardsPerView = getCardsPerView();
+                if (currentIndex > Math.ceil(totalCards / cardsPerView) - 1) {
+                    currentIndex = Math.ceil(totalCards / cardsPerView) - 1;
+                }
+                updateReviews(false);
+            });
+
+            setTimeout(() => updateReviews(false), 100);
+        });
+
+        // ============================================================
+        // 6. КОПИРОВАНИЕ ТЕЛЕФОНА
+        // ============================================================
+        function copyPhone(phone) {
+            navigator.clipboard.writeText(phone).then(() => {
+                const notification = document.getElementById('copyNotification');
+                notification.classList.add('show');
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 2500);
+            }).catch(() => {
+                const input = document.createElement('input');
+                input.value = phone;
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy');
+                document.body.removeChild(input);
+                const notification = document.getElementById('copyNotification');
+                notification.classList.add('show');
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 2500);
+            });
+        }
+
+        // ============================================================
+        // 7. СКРОЛЛ-КНОПКА
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollBtn = document.getElementById('scrollTopBtn');
+            const header = document.getElementById('mainHeader');
+
+            window.addEventListener('scroll', function() {
+                const scrollY = window.scrollY;
+
+                if (scrollY > 400) {
+                    scrollBtn.classList.add('visible');
+                } else {
+                    scrollBtn.classList.remove('visible');
+                }
+
+                if (scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            scrollBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // ============================================================
+        // 8. АКТИВНЫЕ ССЫЛКИ
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('#mainNav a');
+            const sections = document.querySelectorAll('section[id]');
+
+            function updateActiveLink() {
+                let current = '';
+                const scrollPos = window.scrollY + 120;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+            setTimeout(updateActiveLink, 100);
+        });
+
+        // ============================================================
+        // 9. ПЛАВНЫЙ СКРОЛЛ
+        // ============================================================
+        document.querySelectorAll('nav a, .btn-luxury, .btn-outline').forEach(el => {
+            el.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const offset = 80;
+                        const pos = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                        window.scrollTo({ top: pos, behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
