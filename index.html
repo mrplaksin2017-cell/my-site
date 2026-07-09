@@ -32,7 +32,6 @@
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
 
-        /* ===== ФИКС ГОРИЗОНТАЛЬНОГО СКРОЛЛА ===== */
         html,
         body {
             overflow-x: hidden;
@@ -287,7 +286,7 @@
             min-width: 280px;
         }
 
-        /* ===== СТАТИСТИКА (ЁЛОЧКА) ===== */
+        /* ===== СТАТИСТИКА (ДЕСКТОП) ===== */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -299,10 +298,6 @@
             padding: 30px 20px;
             border: 1px solid var(--glass-border);
             box-shadow: var(--shadow-sm);
-            overflow: hidden;
-            text-align: center;
-            justify-items: center;
-            align-items: center;
         }
 
         .stat-item {
@@ -311,7 +306,6 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            width: 100%;
         }
 
         .stat-number {
@@ -926,40 +920,43 @@
             }
         }
 
-        /* ===== МОБИЛЬНАЯ ВЕРСИЯ (ТЕЛЕФОНЫ) ===== */
+        /* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
         @media (max-width: 768px) {
-            /* Шапка — вертикальная, с сеткой навигации */
             header {
                 flex-direction: column;
-                padding: 15px 5% 12px;
-                gap: 10px;
+                padding: 12px 5%;
+                gap: 8px;
             }
 
             .logo {
-                font-size: 24px;
+                font-size: 22px;
+                text-align: center;
+                width: 100%;
             }
 
             nav {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 6px 10px;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 6px;
                 width: 100%;
             }
 
             nav a {
                 margin: 0;
-                font-size: 13px;
-                padding: 5px 14px;
+                font-size: 12px;
+                padding: 8px 6px;
                 background: rgba(74, 26, 106, 0.06);
-                border-radius: 20px;
+                border-radius: 12px;
                 transition: all 0.3s ease;
-                white-space: nowrap;
+                text-align: center;
+                font-weight: 600;
+                color: var(--color-primary);
+                border: 1px solid transparent;
             }
 
             nav a:hover {
                 background: rgba(74, 26, 106, 0.12);
-                color: var(--color-primary);
+                border-color: var(--color-primary);
             }
 
             nav a::after {
@@ -969,9 +966,9 @@
             nav a.active {
                 background: var(--color-primary);
                 color: #fff;
+                border-color: var(--color-primary);
             }
 
-            /* Герой */
             .hero-new {
                 padding: 30px 5% 50px;
             }
@@ -987,7 +984,6 @@
                 font-size: 14px;
             }
 
-            /* Секции */
             section {
                 padding: 40px 4%;
             }
@@ -998,58 +994,64 @@
                 font-size: 15px;
             }
 
-            /* ===== СТАТИСТИКА — ЁЛОЧКА НА ТЕЛЕФОНЕ ===== */
+            /* ===== СТАТИСТИКА — ЁЛОЧКА СО СДВИГОМ ВПРАВО ===== */
             .stats-grid {
-                grid-template-columns: repeat(3, 1fr);
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
                 gap: 12px 8px;
-                padding: 20px 10px;
+                padding: 20px 15px;
+                text-align: center;
             }
 
-            /* "10 лет" — 1-я колонка */
+            /* 1-й ряд: 10 лет (слева) + Обучение (справа) */
             .stat-item:nth-child(1) {
                 grid-column: 1 / 2;
                 grid-row: 1 / 2;
+                text-align: left;
+                padding-left: 10px;
             }
-
-            /* "Обучение" — 2-я колонка */
             .stat-item:nth-child(2) {
-                grid-column: 2 / 3;
+                grid-column: 3 / 4;
                 grid-row: 1 / 2;
+                text-align: right;
+                padding-right: 10px;
             }
 
-            /* "Формат" — 1-я колонка, 2-й ряд */
+            /* 2-й ряд: Формат (слева) + Клуб (справа) */
             .stat-item:nth-child(3) {
                 grid-column: 1 / 2;
                 grid-row: 2 / 3;
+                text-align: left;
+                padding-left: 10px;
             }
-
-            /* "Клуб" — 2-я колонка, 2-й ряд */
             .stat-item:nth-child(4) {
-                grid-column: 2 / 3;
+                grid-column: 3 / 4;
                 grid-row: 2 / 3;
+                text-align: right;
+                padding-right: 10px;
             }
 
-            /* "Носители" — по центру, отдельно, на всю ширину */
+            /* 3-й ряд: Носители — по центру */
             .stat-item:nth-child(5) {
-                grid-column: 1 / 4;
+                grid-column: 2 / 3;
                 grid-row: 3 / 4;
                 justify-self: center;
                 align-self: center;
-                width: 100%;
-                max-width: 200px;
+                text-align: center;
+                max-width: 180px;
                 margin: 0 auto;
                 padding-top: 5px;
             }
 
-            .stat-item .stat-number {
-                font-size: 18px;
+            .stat-number {
+                font-size: 20px;
             }
 
-            .stat-item .stat-label {
+            .stat-label {
                 font-size: 11px;
+                line-height: 1.3;
             }
 
-            /* Карточки программ */
             .programs-grid {
                 grid-template-columns: 1fr;
             }
@@ -1057,7 +1059,6 @@
                 padding: 30px 20px;
             }
 
-            /* Преимущества */
             .advantages-grid {
                 grid-template-columns: 1fr;
             }
@@ -1065,7 +1066,6 @@
                 padding: 30px 20px;
             }
 
-            /* Преподаватели — карусель */
             .teachers-carousel {
                 overflow-x: auto;
                 overflow-y: hidden;
@@ -1103,7 +1103,6 @@
                 display: none !important;
             }
 
-            /* Отзывы — карусель */
             .reviews-carousel {
                 overflow-x: auto;
                 overflow-y: hidden;
@@ -1136,7 +1135,6 @@
                 display: none !important;
             }
 
-            /* Цены */
             .pricing-grid {
                 grid-template-columns: 1fr;
             }
@@ -1144,7 +1142,6 @@
                 padding: 30px 20px;
             }
 
-            /* Консультация */
             .consult-box {
                 padding: 30px 20px;
             }
@@ -1152,7 +1149,6 @@
                 font-size: 28px;
             }
 
-            /* Контакты */
             .contacts-wrapper {
                 grid-template-columns: 1fr;
                 padding: 20px;
@@ -1161,7 +1157,6 @@
                 height: 250px;
             }
 
-            /* Кнопка наверх */
             .scroll-top {
                 bottom: 15px;
                 right: 15px;
@@ -1171,7 +1166,6 @@
             }
         }
 
-        /* ===== ОЧЕНЬ МАЛЕНЬКИЕ ТЕЛЕФОНЫ ===== */
         @media (max-width: 480px) {
             .hero-new h1 {
                 font-size: 26px;
@@ -1182,21 +1176,34 @@
             }
 
             .stats-grid {
-                gap: 8px 6px;
-                padding: 15px 8px;
+                gap: 10px 5px;
+                padding: 15px 10px;
             }
 
-            .stat-item .stat-number {
-                font-size: 16px;
+            .stat-item:nth-child(1) {
+                padding-left: 5px;
+            }
+            .stat-item:nth-child(2) {
+                padding-right: 5px;
+            }
+            .stat-item:nth-child(3) {
+                padding-left: 5px;
+            }
+            .stat-item:nth-child(4) {
+                padding-right: 5px;
             }
 
-            .stat-item .stat-label {
+            .stat-number {
+                font-size: 17px;
+            }
+
+            .stat-label {
                 font-size: 10px;
             }
 
             nav a {
-                font-size: 11px;
-                padding: 4px 10px;
+                font-size: 10px;
+                padding: 6px 4px;
             }
 
             .teacher-card {
@@ -1232,7 +1239,6 @@
     <div class="ambient-glow-1"></div>
     <div class="ambient-glow-2"></div>
 
-    <!-- ===== ШАПКА ===== -->
     <header id="mainHeader">
         <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Dreams</div>
         <nav id="mainNav">
@@ -1246,7 +1252,6 @@
     </header>
 
     <main>
-        <!-- ===== ГЕРО-БЛОК ===== -->
         <section class="hero-new">
             <h1>Говори легко и свободно</h1>
             <div class="hero-actions">
@@ -1255,7 +1260,6 @@
             </div>
         </section>
 
-        <!-- ===== СТАТИСТИКА ===== -->
         <section class="fade-section">
             <div class="stats-grid">
                 <div class="stat-item">
@@ -1281,7 +1285,6 @@
             </div>
         </section>
 
-        <!-- ===== АКАДЕМИЧЕСКИЕ ПРОГРАММЫ ===== -->
         <section id="programs" class="fade-section">
             <div class="section-header">
                 <div class="header-text">
@@ -1313,7 +1316,6 @@
             </div>
         </section>
 
-        <!-- ===== ПРЕИМУЩЕСТВА ===== -->
         <section class="fade-section">
             <div class="section-header">
                 <div class="header-text">
@@ -1349,7 +1351,6 @@
             </div>
         </section>
 
-        <!-- ===== ПРЕПОДАВАТЕЛИ ===== -->
         <section id="teachers" class="fade-section">
             <div class="section-header">
                 <div class="header-text">
@@ -1419,7 +1420,6 @@
             </div>
         </section>
 
-        <!-- ===== ЦЕНЫ ===== -->
         <section id="pricing" class="fade-section">
             <div class="section-header">
                 <div class="header-text">
@@ -1510,7 +1510,6 @@
             </div>
         </section>
 
-        <!-- ===== ОТЗЫВЫ ===== -->
         <section id="reviews" class="fade-section">
             <div class="section-header">
                 <div class="header-text">
@@ -1614,7 +1613,6 @@
             </div>
         </section>
 
-        <!-- ===== КОНСУЛЬТАЦИЯ ===== -->
         <section id="consult" class="consult-section fade-section">
             <div class="consult-box">
                 <h2 class="section-title">Получить консультацию</h2>
@@ -1630,7 +1628,6 @@
             </div>
         </section>
 
-        <!-- ===== КОНТАКТЫ ===== -->
         <section id="contacts" class="fade-section">
             <h2 class="section-title">Контакты и локация</h2>
             <div class="contacts-wrapper">
@@ -1674,7 +1671,6 @@
 
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
     <script>
-        // ===== ЯНДЕКС КАРТЫ =====
         ymaps.ready(function() {
             const coords = [55.042323, 82.962657];
             const myMap = new ymaps.Map("map", {
@@ -1691,7 +1687,6 @@
             myMap.geoObjects.add(mark);
         });
 
-        // ===== FADE-АНИМАЦИЯ =====
         document.addEventListener('DOMContentLoaded', function() {
             const sections = document.querySelectorAll('.fade-section');
             const observer = new IntersectionObserver((entries) => {
@@ -1704,7 +1699,6 @@
             sections.forEach(section => observer.observe(section));
         });
 
-        // ===== ОТКРЫТИЕ ФОРМЫ =====
         function openForm() {
             const btn = document.getElementById('consultBtn');
             const loadingDiv = document.getElementById('consultLoading');
@@ -1717,7 +1711,6 @@
             }, 1500);
         }
 
-        // ===== КАРУСЕЛЬ ПРЕПОДАВАТЕЛЕЙ =====
         document.addEventListener('DOMContentLoaded', function() {
             const track = document.getElementById('teachersTrack');
             const prevBtn = document.getElementById('teachersPrev');
@@ -1772,7 +1765,6 @@
             setTimeout(() => updateTeachers(false), 100);
         });
 
-        // ===== КАРУСЕЛЬ ОТЗЫВОВ =====
         document.addEventListener('DOMContentLoaded', function() {
             const track = document.getElementById('reviewsTrack');
             const prevBtn = document.getElementById('reviewsPrev');
@@ -1826,7 +1818,6 @@
             setTimeout(() => updateReviews(false), 100);
         });
 
-        // ===== КОПИРОВАНИЕ ТЕЛЕФОНА =====
         function copyPhone(phone) {
             navigator.clipboard.writeText(phone).then(() => {
                 const notification = document.getElementById('copyNotification');
@@ -1849,7 +1840,6 @@
             });
         }
 
-        // ===== СКРОЛЛ-КНОПКА =====
         document.addEventListener('DOMContentLoaded', function() {
             const scrollBtn = document.getElementById('scrollTopBtn');
             const header = document.getElementById('mainHeader');
@@ -1871,7 +1861,6 @@
             });
         });
 
-        // ===== АКТИВНЫЕ ССЫЛКИ =====
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('#mainNav a');
             const sections = document.querySelectorAll('section[id]');
@@ -1897,7 +1886,6 @@
             setTimeout(updateActiveLink, 100);
         });
 
-        // ===== ПЛАВНЫЙ СКРОЛЛ =====
         document.querySelectorAll('nav a, .btn-luxury, .btn-outline').forEach(el => {
             el.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
