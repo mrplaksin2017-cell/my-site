@@ -294,6 +294,7 @@
             box-shadow: var(--shadow-sm);
             overflow: hidden;
             text-align: center;
+            justify-items: center;
         }
         .stat-item {
             display: flex;
@@ -967,12 +968,13 @@
             .section-title { font-size: 26px; }
             .section-subtitle { font-size: 15px; }
 
-            /* Статистика */
+            /* Статистика — 2 колонки, всё по центру */
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
                 padding: 20px 15px;
                 text-align: center;
+                justify-items: center;
             }
             .stat-item {
                 display: flex;
@@ -1040,21 +1042,43 @@
                 display: none !important;
             }
 
+            /* Отзывы - карусель на телефоне */
+            .reviews-carousel {
+                overflow-x: auto;
+                overflow-y: hidden;
+                padding: 10px 0 20px;
+                display: flex;
+                -webkit-overflow-scrolling: touch;
+                scroll-snap-type: x mandatory;
+                gap: 0;
+            }
+
+            .reviews-track {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+                padding: 0 5%;
+                transform: none !important;
+                width: auto;
+                flex-wrap: nowrap;
+            }
+
+            .review-card {
+                flex: 0 0 85%;
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 25px 20px;
+                scroll-snap-align: center;
+            }
+
+            /* Скрываем стрелки на отзывах на телефоне */
+            .carousel-controls {
+                display: none !important;
+            }
+
             /* Цены */
             .pricing-grid { grid-template-columns: 1fr; }
             .pricing-card { padding: 30px 20px; }
-
-            /* Отзывы */
-            .review-card {
-                flex: 0 0 calc(100% - 15px);
-                padding: 25px 20px;
-            }
-            .review-header { flex-wrap: wrap; }
-            .review-avatar {
-                width: 44px;
-                height: 44px;
-                font-size: 16px;
-            }
 
             /* Консультация */
             .consult-box { padding: 30px 20px; }
@@ -1095,6 +1119,12 @@
             .teacher-card {
                 flex: 0 0 90%;
                 max-width: 280px;
+                padding: 20px 15px;
+            }
+
+            .review-card {
+                flex: 0 0 90%;
+                max-width: 320px;
                 padding: 20px 15px;
             }
 
