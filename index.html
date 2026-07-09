@@ -287,16 +287,16 @@
             min-width: 280px;
         }
 
-        /* ===== СТАТИСТИКА (ЖЁСТКИЙ ЦЕНТР) ===== */
+        /* ===== СТАТИСТИКА (ЁЛОЧКА) ===== */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
+            gap: 15px;
             margin-bottom: 80px;
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border-radius: 32px;
-            padding: 40px 30px;
+            padding: 30px 20px;
             border: 1px solid var(--glass-border);
             box-shadow: var(--shadow-sm);
             overflow: hidden;
@@ -312,14 +312,9 @@
             justify-content: center;
             text-align: center;
             width: 100%;
-            height: 100%;
-            min-height: 80px;
         }
 
-        .stat-item .stat-number {
-            text-align: center;
-            width: 100%;
-            display: block;
+        .stat-number {
             font-size: 28px;
             font-weight: 800;
             color: var(--color-primary);
@@ -328,10 +323,7 @@
             margin-bottom: 4px;
         }
 
-        .stat-item .stat-label {
-            text-align: center;
-            width: 100%;
-            display: block;
+        .stat-label {
             color: var(--text-muted);
             font-size: 13px;
             line-height: 1.4;
@@ -920,11 +912,6 @@
             .advantages-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .stats-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
-                padding: 30px 20px;
-            }
             .review-card {
                 flex: 0 0 calc(100% - 15px);
             }
@@ -1011,39 +998,55 @@
                 font-size: 15px;
             }
 
-            /* ===== СТАТИСТИКА: 2 колонки, ЖЁСТКИЙ ЦЕНТР ===== */
+            /* ===== СТАТИСТИКА — ЁЛОЧКА НА ТЕЛЕФОНЕ ===== */
             .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px 10px;
-                padding: 20px 15px;
-                justify-items: center;
-                align-items: center;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px 8px;
+                padding: 20px 10px;
             }
 
-            .stat-item {
-                min-height: 70px;
-                padding: 5px 0;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
+            /* "10 лет" — 1-я колонка */
+            .stat-item:nth-child(1) {
+                grid-column: 1 / 2;
+                grid-row: 1 / 2;
+            }
+
+            /* "Обучение" — 2-я колонка */
+            .stat-item:nth-child(2) {
+                grid-column: 2 / 3;
+                grid-row: 1 / 2;
+            }
+
+            /* "Формат" — 1-я колонка, 2-й ряд */
+            .stat-item:nth-child(3) {
+                grid-column: 1 / 2;
+                grid-row: 2 / 3;
+            }
+
+            /* "Клуб" — 2-я колонка, 2-й ряд */
+            .stat-item:nth-child(4) {
+                grid-column: 2 / 3;
+                grid-row: 2 / 3;
+            }
+
+            /* "Носители" — по центру, отдельно, на всю ширину */
+            .stat-item:nth-child(5) {
+                grid-column: 1 / 4;
+                grid-row: 3 / 4;
+                justify-self: center;
+                align-self: center;
                 width: 100%;
+                max-width: 200px;
+                margin: 0 auto;
+                padding-top: 5px;
             }
 
             .stat-item .stat-number {
                 font-size: 18px;
-                text-align: center;
-                width: 100%;
-                display: block;
             }
 
             .stat-item .stat-label {
                 font-size: 11px;
-                text-align: center;
-                width: 100%;
-                display: block;
-                line-height: 1.3;
             }
 
             /* Карточки программ */
@@ -1179,12 +1182,8 @@
             }
 
             .stats-grid {
-                gap: 10px 8px;
-                padding: 15px 10px;
-            }
-
-            .stat-item {
-                min-height: 60px;
+                gap: 8px 6px;
+                padding: 15px 8px;
             }
 
             .stat-item .stat-number {
