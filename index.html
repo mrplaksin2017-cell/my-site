@@ -378,7 +378,7 @@
             line-height: 1.6;
         }
 
-        /* ===== ПРЕПОДАВАТЕЛИ (БОЛЬШИЕ КАРТОЧКИ) ===== */
+        /* ===== ПРЕПОДАВАТЕЛИ ===== */
         .teachers-carousel {
             position: relative;
             overflow: hidden;
@@ -860,6 +860,7 @@
             transform: scale(0.95);
         }
 
+        /* ===== АДАПТИВНАЯ ВЕРСИЯ (ПЛАНШЕТЫ) ===== */
         @media (max-width: 1024px) {
             .contacts-wrapper { grid-template-columns: 1fr; }
             .map-container { height: 350px; }
@@ -871,63 +872,122 @@
             .pricing-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
+        /* ===== МОБИЛЬНАЯ ВЕРСИЯ (ТЕЛЕФОНЫ) ===== */
         @media (max-width: 768px) {
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .teacher-card { flex: 0 0 calc(100% - 15px); }
-        }
-
-        @media (max-width: 968px) {
-            .hero-new h1 { font-size: 42px; letter-spacing: -1px; }
-            .section-title { font-size: 32px; }
-            .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
-            .advantages-grid { grid-template-columns: 1fr; }
-            nav a { margin-left: 20px; font-size: 13px; }
-            section { padding: 60px 5%; }
-            .programs-grid { grid-template-columns: 1fr; }
-            .pricing-grid { grid-template-columns: 1fr; }
-            .hero-actions { flex-direction: column; align-items: center; }
-            .hero-actions .btn-luxury,
-            .hero-actions .btn-outline { min-width: 100%; max-width: 400px; }
-            .consult-box { padding: 40px 25px; }
-        }
-
-        @media (max-width: 600px) {
+            /* Шапка */
             header {
-                padding: 15px 5%;
-                flex-direction: column;
-                gap: 15px;
+                padding: 12px 5%;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
             }
-            nav a { margin: 0 12px; font-size: 12px; }
-            .hero-new { padding: 20px 5% 60px; }
-            .hero-new h1 { font-size: 28px; }
-            section { padding: 40px 5%; }
-            .contacts-wrapper { padding: 20px; }
-            .consult-box { padding: 30px 20px; }
+            .logo { font-size: 20px; }
+            nav a {
+                margin: 0 10px;
+                font-size: 11px;
+            }
+
+            /* Герой */
+            .hero-new { padding: 30px 5% 50px; }
+            .hero-new h1 {
+                font-size: 32px;
+                line-height: 1.2;
+            }
+            .hero-actions .btn-luxury,
+            .hero-actions .btn-outline {
+                min-width: 100%;
+                padding: 16px 20px;
+                font-size: 14px;
+            }
+
+            /* Секции */
+            section { padding: 40px 4%; }
+            .section-title { font-size: 26px; }
+            .section-subtitle { font-size: 15px; }
+
+            /* Статистика */
             .stats-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
                 padding: 20px 15px;
-                gap: 15px;
             }
-            .stat-number { font-size: 20px; }
+            .stat-number { font-size: 18px; }
             .stat-label { font-size: 11px; }
+
+            /* Карточки программ */
+            .programs-grid { grid-template-columns: 1fr; }
+            .program-card { padding: 30px 20px; }
+
+            /* Преимущества */
+            .advantages-grid { grid-template-columns: 1fr; }
+            .advantage-card { padding: 30px 20px; }
+
+            /* Преподаватели */
+            .teacher-card {
+                flex: 0 0 calc(100% - 15px);
+                padding: 30px 20px;
+            }
+            .teacher-avatar-img {
+                width: 120px;
+                height: 120px;
+            }
+            .teacher-card h3 { font-size: 20px; }
+
+            /* Цены */
+            .pricing-grid { grid-template-columns: 1fr; }
+            .pricing-card { padding: 30px 20px; }
+
+            /* Отзывы */
+            .review-card {
+                flex: 0 0 calc(100% - 15px);
+                padding: 25px 20px;
+            }
+            .review-header { flex-wrap: wrap; }
+            .review-avatar {
+                width: 44px;
+                height: 44px;
+                font-size: 16px;
+            }
+
+            /* Консультация */
+            .consult-box { padding: 30px 20px; }
+            .consult-box .section-title { font-size: 28px; }
+
+            /* Контакты */
+            .contacts-wrapper {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            .map-container { height: 250px; }
+
+            /* Кнопка наверх */
             .scroll-top {
                 bottom: 15px;
                 right: 15px;
-                width: 48px;
-                height: 48px;
+                width: 44px;
+                height: 44px;
                 font-size: 18px;
             }
-            .copy-notification {
-                bottom: 80px;
-                font-size: 13px;
-                padding: 12px 20px;
-                width: 90%;
-                justify-content: center;
+        }
+
+        /* ===== ОЧЕНЬ МАЛЕНЬКИЕ ТЕЛЕФОНЫ ===== */
+        @media (max-width: 480px) {
+            .hero-new h1 { font-size: 26px; }
+            .section-title { font-size: 22px; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .stat-number { font-size: 16px; }
+            nav a { margin: 0 6px; font-size: 10px; }
+            .pricing-card .price-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
             }
-            .phone-tooltip { font-size: 11px; padding: 6px 12px; }
-            .programs-grid { grid-template-columns: 1fr; }
-            .pricing-grid { grid-template-columns: 1fr; }
-            .teacher-card { flex: 0 0 calc(100% - 15px); }
+            .pricing-card .price-value {
+                text-align: left;
+                width: 100%;
+            }
+            .consult-box .section-title { font-size: 24px; }
         }
     </style>
 </head>
@@ -1057,7 +1117,7 @@
             </div>
         </section>
 
-        <!-- ===== ПРЕПОДАВАТЕЛИ (БОЛЬШИЕ КАРТОЧКИ) ===== -->
+        <!-- ===== ПРЕПОДАВАТЕЛИ ===== -->
         <section id="teachers" class="fade-section">
             <div class="section-header">
                 <div class="header-text">
@@ -1325,7 +1385,7 @@
             </div>
         </section>
 
-        <!-- ===== КОНСУЛЬТАЦИЯ (БЕЗ ПОЛЕЙ ВВОДА, С АНИМАЦИЕЙ) ===== -->
+        <!-- ===== КОНСУЛЬТАЦИЯ ===== -->
         <section id="consult" class="consult-section fade-section">
             <div class="consult-box">
                 <h2 class="section-title">Получить консультацию</h2>
@@ -1333,7 +1393,6 @@
 
                 <button class="btn-luxury" id="consultBtn" onclick="openForm()">Получить консультацию</button>
 
-                <!-- СОСТОЯНИЕ ЗАГРУЗКИ -->
                 <div class="consult-loading" id="consultLoading">
                     <div class="spinner"></div>
                     <p>⏳ Открываем форму...</p>
