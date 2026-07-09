@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dreams Academy — Говори легко и свободно</title>
-
     <style>
+        /* ===== ОБЩИЕ СТИЛИ ===== */
         :root {
             --bg-main: #f0e8f8;
             --color-primary: #4a1a6a;
@@ -33,7 +33,8 @@
         }
 
         /* ===== ФИКС ГОРИЗОНТАЛЬНОГО СКРОЛЛА ===== */
-        html, body {
+        html,
+        body {
             overflow-x: hidden;
             width: 100%;
             max-width: 100%;
@@ -77,7 +78,7 @@
             position: absolute;
             width: 700px;
             height: 700px;
-            background: radial-gradient(circle, rgba(74, 26, 106, 0.12) 0%, rgba(255,255,255,0) 70%);
+            background: radial-gradient(circle, rgba(74, 26, 106, 0.12) 0%, rgba(255, 255, 255, 0) 70%);
             top: -150px;
             right: -100px;
             z-index: -1;
@@ -87,7 +88,7 @@
             position: absolute;
             width: 900px;
             height: 900px;
-            background: radial-gradient(circle, rgba(100, 60, 130, 0.08) 0%, rgba(255,255,255,0) 70%);
+            background: radial-gradient(circle, rgba(100, 60, 130, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
             top: 600px;
             left: -200px;
             z-index: -1;
@@ -150,8 +151,12 @@
             background-color: var(--color-primary);
             transition: width 0.3s ease;
         }
-        nav a:hover::after { width: 100%; }
-        nav a:hover { color: var(--color-primary); }
+        nav a:hover::after {
+            width: 100%;
+        }
+        nav a:hover {
+            color: var(--color-primary);
+        }
         nav a.active {
             color: var(--color-primary);
             font-weight: 600;
@@ -172,7 +177,9 @@
             align-items: flex-end;
             margin-bottom: 50px;
         }
-        .header-text { text-align: left; }
+        .header-text {
+            text-align: left;
+        }
 
         .section-title {
             font-size: 44px;
@@ -280,7 +287,7 @@
             min-width: 280px;
         }
 
-        /* ===== СТАТИСТИКА ===== */
+        /* ===== СТАТИСТИКА (ЖЁСТКИЙ ЦЕНТР) ===== */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -295,7 +302,9 @@
             overflow: hidden;
             text-align: center;
             justify-items: center;
+            align-items: center;
         }
+
         .stat-item {
             display: flex;
             flex-direction: column;
@@ -303,16 +312,14 @@
             justify-content: center;
             text-align: center;
             width: 100%;
+            height: 100%;
+            min-height: 80px;
         }
+
         .stat-item .stat-number {
             text-align: center;
             width: 100%;
-        }
-        .stat-item .stat-label {
-            text-align: center;
-            width: 100%;
-        }
-        .stat-number {
+            display: block;
             font-size: 28px;
             font-weight: 800;
             color: var(--color-primary);
@@ -320,10 +327,14 @@
             font-feature-settings: "tnum";
             margin-bottom: 4px;
         }
-        .stat-label {
+
+        .stat-item .stat-label {
+            text-align: center;
+            width: 100%;
+            display: block;
             color: var(--text-muted);
             font-size: 13px;
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         /* ===== ПРОГРАММЫ ===== */
@@ -499,7 +510,9 @@
             fill: var(--color-primary);
             transition: fill 0.25s;
         }
-        .btn-arrow:hover svg { fill: #fff; }
+        .btn-arrow:hover svg {
+            fill: #fff;
+        }
 
         /* ===== ЦЕНЫ ===== */
         .pricing-grid {
@@ -618,7 +631,9 @@
             margin: 0 auto 16px;
         }
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
         .consult-loading p {
             color: var(--text-muted);
@@ -749,7 +764,9 @@
         .contact-item:hover {
             transform: translateX(5px);
         }
-        .contact-item:last-child { margin-bottom: 0; }
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
         .contact-label {
             font-size: 12px;
             text-transform: uppercase;
@@ -894,14 +911,32 @@
 
         /* ===== АДАПТИВНАЯ ВЕРСИЯ (ПЛАНШЕТЫ) ===== */
         @media (max-width: 1024px) {
-            .contacts-wrapper { grid-template-columns: 1fr; }
-            .map-container { height: 350px; }
-            .advantages-grid { grid-template-columns: repeat(2, 1fr); }
-            .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 30px 20px; }
-            .review-card { flex: 0 0 calc(100% - 15px); }
-            .teacher-card { flex: 0 0 calc(50% - 15px); }
-            .programs-grid { grid-template-columns: repeat(2, 1fr); }
-            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+            .contacts-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .map-container {
+                height: 350px;
+            }
+            .advantages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                padding: 30px 20px;
+            }
+            .review-card {
+                flex: 0 0 calc(100% - 15px);
+            }
+            .teacher-card {
+                flex: 0 0 calc(50% - 15px);
+            }
+            .programs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         /* ===== МОБИЛЬНАЯ ВЕРСИЯ (ТЕЛЕФОНЫ) ===== */
@@ -950,7 +985,9 @@
             }
 
             /* Герой */
-            .hero-new { padding: 30px 5% 50px; }
+            .hero-new {
+                padding: 30px 5% 50px;
+            }
             .hero-new h1 {
                 font-size: 32px;
                 line-height: 1.2;
@@ -964,19 +1001,28 @@
             }
 
             /* Секции */
-            section { padding: 40px 4%; }
-            .section-title { font-size: 26px; }
-            .section-subtitle { font-size: 15px; }
+            section {
+                padding: 40px 4%;
+            }
+            .section-title {
+                font-size: 26px;
+            }
+            .section-subtitle {
+                font-size: 15px;
+            }
 
-            /* Статистика — 2 колонки, всё по центру */
+            /* ===== СТАТИСТИКА: 2 колонки, ЖЁСТКИЙ ЦЕНТР ===== */
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
+                gap: 15px 10px;
                 padding: 20px 15px;
-                text-align: center;
                 justify-items: center;
+                align-items: center;
             }
+
             .stat-item {
+                min-height: 70px;
+                padding: 5px 0;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -984,26 +1030,39 @@
                 text-align: center;
                 width: 100%;
             }
+
             .stat-item .stat-number {
+                font-size: 18px;
                 text-align: center;
                 width: 100%;
+                display: block;
             }
+
             .stat-item .stat-label {
+                font-size: 11px;
                 text-align: center;
                 width: 100%;
+                display: block;
+                line-height: 1.3;
             }
-            .stat-number { font-size: 18px; }
-            .stat-label { font-size: 11px; }
 
             /* Карточки программ */
-            .programs-grid { grid-template-columns: 1fr; }
-            .program-card { padding: 30px 20px; }
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+            .program-card {
+                padding: 30px 20px;
+            }
 
             /* Преимущества */
-            .advantages-grid { grid-template-columns: 1fr; }
-            .advantage-card { padding: 30px 20px; }
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+            .advantage-card {
+                padding: 30px 20px;
+            }
 
-            /* Преподаватели - карусель на телефоне */
+            /* Преподаватели — карусель */
             .teachers-carousel {
                 overflow-x: auto;
                 overflow-y: hidden;
@@ -1037,12 +1096,11 @@
                 height: 120px;
             }
 
-            /* Скрываем стрелки на телефоне */
             .teacher-controls {
                 display: none !important;
             }
 
-            /* Отзывы - карусель на телефоне */
+            /* Отзывы — карусель */
             .reviews-carousel {
                 overflow-x: auto;
                 overflow-y: hidden;
@@ -1071,25 +1129,34 @@
                 scroll-snap-align: center;
             }
 
-            /* Скрываем стрелки на отзывах на телефоне */
             .carousel-controls {
                 display: none !important;
             }
 
             /* Цены */
-            .pricing-grid { grid-template-columns: 1fr; }
-            .pricing-card { padding: 30px 20px; }
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            .pricing-card {
+                padding: 30px 20px;
+            }
 
             /* Консультация */
-            .consult-box { padding: 30px 20px; }
-            .consult-box .section-title { font-size: 28px; }
+            .consult-box {
+                padding: 30px 20px;
+            }
+            .consult-box .section-title {
+                font-size: 28px;
+            }
 
             /* Контакты */
             .contacts-wrapper {
                 grid-template-columns: 1fr;
                 padding: 20px;
             }
-            .map-container { height: 250px; }
+            .map-container {
+                height: 250px;
+            }
 
             /* Кнопка наверх */
             .scroll-top {
@@ -1107,9 +1174,26 @@
                 font-size: 26px;
                 letter-spacing: 0.04em;
             }
-            .section-title { font-size: 22px; }
-            .stats-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-            .stat-number { font-size: 16px; }
+            .section-title {
+                font-size: 22px;
+            }
+
+            .stats-grid {
+                gap: 10px 8px;
+                padding: 15px 10px;
+            }
+
+            .stat-item {
+                min-height: 60px;
+            }
+
+            .stat-item .stat-number {
+                font-size: 16px;
+            }
+
+            .stat-item .stat-label {
+                font-size: 10px;
+            }
 
             nav a {
                 font-size: 11px;
@@ -1137,10 +1221,13 @@
                 text-align: left;
                 width: 100%;
             }
-            .consult-box .section-title { font-size: 24px; }
+            .consult-box .section-title {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="ambient-glow-1"></div>
@@ -1173,24 +1260,24 @@
         <section class="fade-section">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-number">10 лет</div>
-                    <div class="stat-label">на рынке</div>
+                    <span class="stat-number">10 лет</span>
+                    <span class="stat-label">на рынке</span>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">Обучение</div>
-                    <div class="stat-label">в группе<br>или индивидуально</div>
+                    <span class="stat-number">Обучение</span>
+                    <span class="stat-label">в группе<br>или индивидуально</span>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">Формат</div>
-                    <div class="stat-label">очно<br>или онлайн</div>
+                    <span class="stat-number">Формат</span>
+                    <span class="stat-label">очно<br>или онлайн</span>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">Клуб</div>
-                    <div class="stat-label">разговорный<br>клуб</div>
+                    <span class="stat-number">Клуб</span>
+                    <span class="stat-label">разговорный<br>клуб</span>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">Носители</div>
-                    <div class="stat-label">носители<br>языка</div>
+                    <span class="stat-number">Носители</span>
+                    <span class="stat-label">носители<br>языка</span>
                 </div>
             </div>
         </section>
@@ -1203,26 +1290,22 @@
                     <p class="section-subtitle">Ориентир на фундаментальные знания и свободную коммуникацию</p>
                 </div>
             </div>
-
             <div class="programs-grid">
                 <div class="program-card">
                     <h3>Английский язык</h3>
                     <div class="program-desc">Изучение языка с нуля до продвинутого уровня. Подготовка к ОГЭ, ЕГЭ, международным экзаменам. Разговорный клуб и погружение в языковую среду.</div>
                     <span class="program-tag">Очно и онлайн</span>
                 </div>
-
                 <div class="program-card">
                     <h3>Китайский язык</h3>
                     <div class="program-desc">Погружение в культуру и язык Поднебесной. Изучение иероглифики, тонов, разговорной речи. Подготовка к международным экзаменам HSK.</div>
                     <span class="program-tag">Очно и онлайн</span>
                 </div>
-
                 <div class="program-card">
                     <h3>Ментальная арифметика и математика</h3>
                     <div class="program-desc">Развитие скорости счета, логического мышления и концентрации. Подготовка к олимпиадам и углубленное изучение математики.</div>
                     <span class="program-tag">Групповые и индивидуальные</span>
                 </div>
-
                 <div class="program-card">
                     <h3>Логопедия</h3>
                     <div class="program-desc">Постановка звуков, развитие речи, коррекция дикции. Индивидуальные занятия с опытным логопедом для детей любого возраста.</div>
@@ -1283,7 +1366,6 @@
                     </button>
                 </div>
             </div>
-
             <div class="teachers-carousel">
                 <div class="teachers-track" id="teachersTrack">
                     <div class="teacher-card">
@@ -1346,7 +1428,6 @@
                     <p class="section-subtitle">Выберите подходящий формат и программу</p>
                 </div>
             </div>
-
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <h3>Английский язык</h3>
@@ -1446,7 +1527,6 @@
                     </button>
                 </div>
             </div>
-
             <div class="reviews-carousel">
                 <div class="reviews-track" id="reviewsTrack">
                     <div class="review-card">
@@ -1540,14 +1620,11 @@
             <div class="consult-box">
                 <h2 class="section-title">Получить консультацию</h2>
                 <p class="consult-desc">Перейдите в форму, заполните ФИО и телефон, и мы свяжемся с вами в ближайшее время.</p>
-
                 <button class="btn-luxury" id="consultBtn" onclick="openForm()">Получить консультацию</button>
-
                 <div class="consult-loading" id="consultLoading">
                     <div class="spinner"></div>
                     <p>⏳ Открываем форму...</p>
                 </div>
-
                 <div style="margin-top: 20px; font-size: 14px; color: var(--text-muted);">
                     Это займет не больше 2 минут
                 </div>
@@ -1598,10 +1675,8 @@
 
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
     <script>
-        // ============================================================
-        // 1. ЯНДЕКС КАРТЫ
-        // ============================================================
-        ymaps.ready(function(){
+        // ===== ЯНДЕКС КАРТЫ =====
+        ymaps.ready(function() {
             const coords = [55.042323, 82.962657];
             const myMap = new ymaps.Map("map", {
                 center: coords,
@@ -1617,9 +1692,7 @@
             myMap.geoObjects.add(mark);
         });
 
-        // ============================================================
-        // 2. FADE-АНИМАЦИЯ
-        // ============================================================
+        // ===== FADE-АНИМАЦИЯ =====
         document.addEventListener('DOMContentLoaded', function() {
             const sections = document.querySelectorAll('.fade-section');
             const observer = new IntersectionObserver((entries) => {
@@ -1632,35 +1705,26 @@
             sections.forEach(section => observer.observe(section));
         });
 
-        // ============================================================
-        // 3. ОТКРЫТИЕ ФОРМЫ С АНИМАЦИЕЙ
-        // ============================================================
+        // ===== ОТКРЫТИЕ ФОРМЫ =====
         function openForm() {
             const btn = document.getElementById('consultBtn');
             const loadingDiv = document.getElementById('consultLoading');
-
             btn.style.display = 'none';
             loadingDiv.classList.add('show');
-
             window.open('https://docs.google.com/forms/d/e/1FAIpQLSelVhwcDIxm8r4igsK7LitWq0Uki8nEQZZLednb0ZTgMHVcoA/viewform', '_blank');
-
             setTimeout(() => {
                 loadingDiv.classList.remove('show');
                 btn.style.display = 'inline-block';
             }, 1500);
         }
 
-        // ============================================================
-        // 4. КАРУСЕЛЬ ПРЕПОДАВАТЕЛЕЙ
-        // ============================================================
+        // ===== КАРУСЕЛЬ ПРЕПОДАВАТЕЛЕЙ =====
         document.addEventListener('DOMContentLoaded', function() {
             const track = document.getElementById('teachersTrack');
             const prevBtn = document.getElementById('teachersPrev');
             const nextBtn = document.getElementById('teachersNext');
             const cards = track.querySelectorAll('.teacher-card');
-
             if (cards.length === 0) return;
-
             let currentIndex = 0;
             const totalCards = cards.length;
             let cardsPerView = window.innerWidth < 1024 ? 2 : 2;
@@ -1709,17 +1773,13 @@
             setTimeout(() => updateTeachers(false), 100);
         });
 
-        // ============================================================
-        // 5. КАРУСЕЛЬ ОТЗЫВОВ
-        // ============================================================
+        // ===== КАРУСЕЛЬ ОТЗЫВОВ =====
         document.addEventListener('DOMContentLoaded', function() {
             const track = document.getElementById('reviewsTrack');
             const prevBtn = document.getElementById('reviewsPrev');
             const nextBtn = document.getElementById('reviewsNext');
             const cards = track.querySelectorAll('.review-card');
-
             if (cards.length === 0) return;
-
             let currentIndex = 0;
             const totalCards = cards.length;
             let cardsPerView = window.innerWidth < 1024 ? 1 : 2;
@@ -1767,9 +1827,7 @@
             setTimeout(() => updateReviews(false), 100);
         });
 
-        // ============================================================
-        // 6. КОПИРОВАНИЕ ТЕЛЕФОНА
-        // ============================================================
+        // ===== КОПИРОВАНИЕ ТЕЛЕФОНА =====
         function copyPhone(phone) {
             navigator.clipboard.writeText(phone).then(() => {
                 const notification = document.getElementById('copyNotification');
@@ -1792,37 +1850,29 @@
             });
         }
 
-        // ============================================================
-        // 7. СКРОЛЛ-КНОПКА
-        // ============================================================
+        // ===== СКРОЛЛ-КНОПКА =====
         document.addEventListener('DOMContentLoaded', function() {
             const scrollBtn = document.getElementById('scrollTopBtn');
             const header = document.getElementById('mainHeader');
-
             window.addEventListener('scroll', function() {
                 const scrollY = window.scrollY;
-
                 if (scrollY > 400) {
                     scrollBtn.classList.add('visible');
                 } else {
                     scrollBtn.classList.remove('visible');
                 }
-
                 if (scrollY > 50) {
                     header.classList.add('scrolled');
                 } else {
                     header.classList.remove('scrolled');
                 }
             });
-
             scrollBtn.addEventListener('click', function() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
 
-        // ============================================================
-        // 8. АКТИВНЫЕ ССЫЛКИ
-        // ============================================================
+        // ===== АКТИВНЫЕ ССЫЛКИ =====
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('#mainNav a');
             const sections = document.querySelectorAll('section[id]');
@@ -1830,7 +1880,6 @@
             function updateActiveLink() {
                 let current = '';
                 const scrollPos = window.scrollY + 120;
-
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
                     const sectionHeight = section.offsetHeight;
@@ -1838,7 +1887,6 @@
                         current = section.getAttribute('id');
                     }
                 });
-
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === '#' + current) {
@@ -1846,14 +1894,11 @@
                     }
                 });
             }
-
             window.addEventListener('scroll', updateActiveLink);
             setTimeout(updateActiveLink, 100);
         });
 
-        // ============================================================
-        // 9. ПЛАВНЫЙ СКРОЛЛ
-        // ============================================================
+        // ===== ПЛАВНЫЙ СКРОЛЛ =====
         document.querySelectorAll('nav a, .btn-luxury, .btn-outline').forEach(el => {
             el.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
