@@ -263,7 +263,7 @@
             font-size: 72px;
             font-weight: 900;
             line-height: 1.08;
-            letter-spacing: -2px;
+            letter-spacing: 0.08em;
             color: var(--color-primary);
             margin-bottom: 30px;
         }
@@ -293,9 +293,14 @@
             border: 1px solid var(--glass-border);
             box-shadow: var(--shadow-sm);
             overflow: hidden;
+            text-align: center;
         }
         .stat-item {
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         .stat-number {
             font-size: 28px;
@@ -939,6 +944,7 @@
             .hero-new h1 {
                 font-size: 32px;
                 line-height: 1.2;
+                letter-spacing: 0.06em;
             }
             .hero-actions .btn-luxury,
             .hero-actions .btn-outline {
@@ -970,15 +976,38 @@
             .advantage-card { padding: 30px 20px; }
 
             /* Преподаватели */
+            .teachers-carousel {
+                display: flex;
+                justify-content: center;
+                overflow: visible;
+                padding: 10px 0;
+            }
+
+            .teachers-track {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                gap: 20px;
+                transform: none !important;
+            }
+
             .teacher-card {
-                flex: 0 0 calc(100% - 15px);
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
                 padding: 30px 20px;
             }
+
             .teacher-avatar-img {
                 width: 120px;
                 height: 120px;
             }
-            .teacher-card h3 { font-size: 20px; }
+
+            .teacher-controls {
+                display: none;
+            }
 
             /* Цены */
             .pricing-grid { grid-template-columns: 1fr; }
@@ -1019,7 +1048,10 @@
 
         /* ===== ОЧЕНЬ МАЛЕНЬКИЕ ТЕЛЕФОНЫ ===== */
         @media (max-width: 480px) {
-            .hero-new h1 { font-size: 26px; }
+            .hero-new h1 {
+                font-size: 26px;
+                letter-spacing: 0.04em;
+            }
             .section-title { font-size: 22px; }
             .stats-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
             .stat-number { font-size: 16px; }
