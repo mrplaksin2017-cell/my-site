@@ -649,17 +649,11 @@
         }
 
         /* ===== ЦЕНЫ ===== */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
         .pricing-grid-full {
             display: grid;
             grid-template-columns: 1fr;
             gap: 30px;
-            margin-top: 30px;
+            margin-bottom: 30px;
         }
 
         .pricing-card-full {
@@ -683,7 +677,7 @@
         }
 
         .pricing-card-full h3 {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 800;
             color: var(--color-primary);
             margin-bottom: 6px;
@@ -735,6 +729,12 @@
 
         .pricing-card-full .btn-luxury {
             width: 100%;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
         }
 
         .pricing-card {
@@ -1366,6 +1366,10 @@
                 padding: 30px 20px;
             }
 
+            .pricing-card-full h3 {
+                font-size: 24px;
+            }
+
             /* ПРЕИМУЩЕСТВА */
             .advantages-grid {
                 grid-template-columns: 1fr;
@@ -1530,7 +1534,11 @@
             }
 
             .pricing-card-full h3 {
-                font-size: 22px;
+                font-size: 20px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
             }
 
             nav a {
@@ -1809,9 +1817,9 @@
                 </div>
             </div>
 
-            <!-- Первые 3 карточки — в ряд -->
-            <div class="pricing-grid">
-                <div class="pricing-card">
+            <!-- Карточка Английский — на всю ширину -->
+            <div class="pricing-grid-full">
+                <div class="pricing-card-full">
                     <h3>Английский язык</h3>
                     <div class="pricing-sub">Очно и онлайн</div>
                     <div class="price-row">
@@ -1842,7 +1850,10 @@
                         <button class="btn-luxury" onclick="document.getElementById('consult').scrollIntoView({behavior: 'smooth'})">Записаться</button>
                     </div>
                 </div>
+            </div>
 
+            <!-- Остальные 3 карточки — в ряд -->
+            <div class="pricing-grid">
                 <div class="pricing-card">
                     <h3>Китайский язык</h3>
                     <div class="pricing-sub">Очно и онлайн</div>
@@ -1878,11 +1889,8 @@
                         <button class="btn-luxury" onclick="document.getElementById('consult').scrollIntoView({behavior: 'smooth'})">Записаться</button>
                     </div>
                 </div>
-            </div>
 
-            <!-- Карточка Логопедия — на всю ширину -->
-            <div class="pricing-grid-full">
-                <div class="pricing-card-full">
+                <div class="pricing-card">
                     <h3>Логопедия</h3>
                     <div class="pricing-sub">Индивидуальные занятия</div>
                     <div class="price-row" style="border-bottom: none;">
