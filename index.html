@@ -651,9 +651,92 @@
         /* ===== ЦЕНЫ ===== */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
+
+        .pricing-grid-full {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .pricing-card-full {
+            width: 100%;
+            padding: 40px 35px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card-full:hover {
+            transform: translateY(-8px);
+            border-color: rgba(74, 26, 106, 0.25);
+            box-shadow: var(--shadow-lg);
+            background: rgba(255, 252, 255, 0.95);
+        }
+
+        .pricing-card-full h3 {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .pricing-card-full .pricing-sub {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        .pricing-card-full .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(74, 26, 106, 0.06);
+        }
+
+        .pricing-card-full .price-row:last-child {
+            border: none;
+        }
+
+        .pricing-card-full .price-label {
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .pricing-card-full .price-value {
+            font-weight: 700;
+            color: var(--color-primary);
+            font-size: 16px;
+            text-align: right;
+        }
+
+        .pricing-card-full .price-duration {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 400;
+            display: block;
+        }
+
+        .pricing-card-full .pricing-btn-wrap {
+            margin-top: auto;
+            padding-top: 25px;
+        }
+
+        .pricing-card-full .btn-luxury {
+            width: 100%;
+        }
+
         .pricing-card {
             background: var(--glass-bg);
             backdrop-filter: blur(16px);
@@ -665,11 +748,13 @@
             display: flex;
             flex-direction: column;
         }
+
         .pricing-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-lg);
             border-color: rgba(74, 26, 106, 0.25);
         }
+
         .pricing-card h3 {
             font-size: 26px;
             font-weight: 800;
@@ -677,11 +762,13 @@
             margin-bottom: 6px;
             letter-spacing: -0.5px;
         }
+
         .pricing-card .pricing-sub {
             color: var(--text-muted);
             font-size: 15px;
             margin-bottom: 25px;
         }
+
         .pricing-card .price-row {
             display: flex;
             justify-content: space-between;
@@ -689,30 +776,36 @@
             padding: 14px 0;
             border-bottom: 1px solid rgba(74, 26, 106, 0.06);
         }
+
         .pricing-card .price-row:last-child {
             border: none;
         }
+
         .pricing-card .price-label {
             color: var(--text-muted);
             font-size: 15px;
             font-weight: 500;
         }
+
         .pricing-card .price-value {
             font-weight: 700;
             color: var(--color-primary);
             font-size: 16px;
             text-align: right;
         }
+
         .pricing-card .price-duration {
             font-size: 12px;
             color: var(--text-muted);
             font-weight: 400;
             display: block;
         }
+
         .pricing-card .pricing-btn-wrap {
             margin-top: auto;
             padding-top: 25px;
         }
+
         .pricing-card .btn-luxury {
             width: 100%;
         }
@@ -1264,6 +1357,15 @@
                 font-size: 24px;
             }
 
+            /* ===== ЦЕНЫ ===== */
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card-full {
+                padding: 30px 20px;
+            }
+
             /* ПРЕИМУЩЕСТВА */
             .advantages-grid {
                 grid-template-columns: 1fr;
@@ -1341,14 +1443,6 @@
 
             .carousel-controls {
                 display: none !important;
-            }
-
-            /* ЦЕНЫ */
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-            .pricing-card {
-                padding: 30px 20px;
             }
 
             /* КОНСУЛЬТАЦИЯ */
@@ -1429,6 +1523,14 @@
 
             .program-card-full .program-desc {
                 font-size: 14px;
+            }
+
+            .pricing-card-full {
+                padding: 25px 18px;
+            }
+
+            .pricing-card-full h3 {
+                font-size: 22px;
             }
 
             nav a {
@@ -1706,6 +1808,8 @@
                     <p class="section-subtitle">Выберите подходящий формат и программу</p>
                 </div>
             </div>
+
+            <!-- Первые 3 карточки — в ряд -->
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <h3>Английский язык</h3>
@@ -1774,8 +1878,11 @@
                         <button class="btn-luxury" onclick="document.getElementById('consult').scrollIntoView({behavior: 'smooth'})">Записаться</button>
                     </div>
                 </div>
+            </div>
 
-                <div class="pricing-card">
+            <!-- Карточка Логопедия — на всю ширину -->
+            <div class="pricing-grid-full">
+                <div class="pricing-card-full">
                     <h3>Логопедия</h3>
                     <div class="pricing-sub">Индивидуальные занятия</div>
                     <div class="price-row" style="border-bottom: none;">
