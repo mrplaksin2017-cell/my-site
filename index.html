@@ -286,7 +286,7 @@
             min-width: 280px;
         }
 
-        /* ===== СТАТИСТИКА (ДЕСКТОП) ===== */
+        /* ===== СТАТИСТИКА ===== */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -997,59 +997,45 @@
                 font-size: 15px;
             }
 
-            /* ===== СТАТИСТИКА — ВАРИАНТ 2 (КОМПАКТНАЯ ЁЛОЧКА) ===== */
+            /* ===== СТАТИСТИКА — СЖАТАЯ ЁЛОЧКА ===== */
             .stats-grid {
                 display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 10px 8px;
+                grid-template-columns: 1fr 1fr;
+                gap: 16px 12px;
                 padding: 20px 15px;
-                text-align: center;
-                justify-items: center;
+                border-radius: 24px;
+                margin-bottom: 40px;
+            }
+
+            .stat-item {
+                display: flex;
+                flex-direction: column;
                 align-items: center;
-            }
-
-            /* 1-й ряд: 10 лет + Обучение */
-            .stat-item:nth-child(1) {
-                grid-column: 1 / 2;
-                grid-row: 1 / 2;
-                justify-self: end;
-                padding-right: 5px;
-            }
-            .stat-item:nth-child(2) {
-                grid-column: 2 / 3;
-                grid-row: 1 / 2;
-                justify-self: start;
-                padding-left: 5px;
-            }
-
-            /* 2-й ряд: Формат + Клуб */
-            .stat-item:nth-child(3) {
-                grid-column: 1 / 2;
-                grid-row: 2 / 3;
-                justify-self: end;
-                padding-right: 5px;
-            }
-            .stat-item:nth-child(4) {
-                grid-column: 2 / 3;
-                grid-row: 2 / 3;
-                justify-self: start;
-                padding-left: 5px;
-            }
-
-            /* 3-й ряд: Носители — по центру */
-            .stat-item:nth-child(5) {
-                grid-column: 2 / 3;
-                grid-row: 3 / 4;
-                justify-self: center;
-                align-self: center;
                 text-align: center;
-                max-width: 180px;
-                margin: 0 auto;
-                padding-top: 5px;
+                max-width: 140px;
+                width: 100%;
+            }
+
+            .stat-item:nth-child(1),
+            .stat-item:nth-child(3) {
+                justify-self: end;
+            }
+
+            .stat-item:nth-child(2),
+            .stat-item:nth-child(4) {
+                justify-self: start;
+            }
+
+            .stat-item:nth-child(5) {
+                grid-column: 1 / -1;
+                justify-self: center;
+                max-width: 200px;
+                padding-top: 4px;
             }
 
             .stat-number {
-                font-size: 20px;
+                font-size: 18px;
+                margin-bottom: 2px;
             }
 
             .stat-label {
@@ -1189,25 +1175,16 @@
             }
 
             .stats-grid {
-                gap: 8px 5px;
-                padding: 15px 10px;
+                gap: 14px 8px;
+                padding: 16px 12px;
             }
 
-            .stat-item:nth-child(1) {
-                padding-right: 3px;
-            }
-            .stat-item:nth-child(2) {
-                padding-left: 3px;
-            }
-            .stat-item:nth-child(3) {
-                padding-right: 3px;
-            }
-            .stat-item:nth-child(4) {
-                padding-left: 3px;
+            .stat-item {
+                max-width: 125px;
             }
 
             .stat-number {
-                font-size: 17px;
+                font-size: 16px;
             }
 
             .stat-label {
